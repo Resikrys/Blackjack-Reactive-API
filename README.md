@@ -69,6 +69,11 @@ blackjack-webflux/
 ## Testing
 `mvn test`
 
+## Swagger UI access
+http://localhost:8080/swagger-ui.html
+or
+http://localhost:8080/swagger-ui/index.html
+
 ## Notes
 - Simplified Blackjack logic; pots extend handing (split, double, insurance).
 - To deploy to Render: create Dockerfile (incl.) and push the image to the container registry or use Docker Compose both services.
