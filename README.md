@@ -74,6 +74,26 @@ http://localhost:8080/swagger-ui.html
 or
 http://localhost:8080/swagger-ui/index.html
 
+1. **Launch the Containers:**
+
+   Run the following command in the directory where you have 
+   docker-compose.yml and your Dockerfile:
+```
+docker compose up --build -d
+```
+2. **Check Status:**
+
+   Make sure all services are running or healthy:
+```
+docker compose ps
+```
+3. **Access to Swagger UI:**
+   - STEP 1: Open your web browser
+   - STEP 2: Navigate to the following URL:
+```
+http://localhost:8080/swagger-ui.html
+```
+
 ## Docker steps
 1. **Build the application**: ./mvnw package (Generate the JAR to target/)
 
