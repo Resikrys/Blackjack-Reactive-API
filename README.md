@@ -74,6 +74,23 @@ http://localhost:8080/swagger-ui.html
 or
 http://localhost:8080/swagger-ui/index.html
 
+## Docker steps
+1. **Build the application**: ./mvnw package (Generate the JAR to target/)
+
+2. **Build the image**: docker build -t blackjack-api:latest .
+
+3. **Execute the image**:
+   - You will need MySQL and MongoDB instances separately 
+   (typically via docker-compose).
+
+   - docker run -p 8080:8080 --name blackjack-app blackjack-api:latest
+
+4. **Tag the image**: 
+   - docker tag blackjack-api:latest 
+   - dockerfile/blackjack-api:1.0
+
+5. **Bid the image**: docker push dockerfile/blackjack-api:1.0
+
 ## Notes
 - Simplified Blackjack logic; pots extend handing (split, double, insurance).
 - To deploy to Render: create Dockerfile (incl.) and push the image to the container registry or use Docker Compose both services.

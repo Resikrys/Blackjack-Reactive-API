@@ -1,0 +1,12 @@
+### Ignore fitxers and construction directories and temporary
+**/target/
+**/.mvn/
+**/build/
+.gradle/
+.idea/
+.vscode/
+
+### Ignore non-necessary configuration adjustments
+docker-compose.yml
+Dockerfile
+.dockerignore
