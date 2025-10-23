@@ -1,4 +1,4 @@
-package s5._1.blackjack.S501_Blackjack.models;
+package s5._1.blackjack.S501_Blackjack.model.mongo;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
