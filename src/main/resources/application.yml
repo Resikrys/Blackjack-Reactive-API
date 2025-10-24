@@ -15,3 +15,7 @@ server:
 logging:
   level:
     root: INFO
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
