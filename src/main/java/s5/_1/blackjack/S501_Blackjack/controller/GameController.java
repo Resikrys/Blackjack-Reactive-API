@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+//import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
@@ -34,7 +34,13 @@ public class GameController {
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<GameDTO> createGame(
-            @RequestBody(description = "Player name.", required = true) CreateGameRequest request) {
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "Player name.",
+                    required = true,
+                    content = @Content(schema = @Schema(implementation = CreateGameRequest.class))
+            )
+            @org.springframework.web.bind.annotation.RequestBody
+            CreateGameRequest request) {
         return service.createGame(request);
     }
 
@@ -66,7 +72,13 @@ public class GameController {
     @PostMapping("/{id}/play")
     public Mono<GameDTO> play(
             @Parameter(description = "Party identifier.", required = true) @PathVariable String id,
-            @RequestBody(description = "Type of play (e.g., HIT, STAND) and, optionally, bet.") PlayRequest request) {
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "Type of play (e.g., HIT, STAND) and, optionally, bet.",
+                    required = true,
+                    content = @Content(schema = @Schema(implementation = PlayRequest.class))
+            )
+            @org.springframework.web.bind.annotation.RequestBody
+            PlayRequest request) {
         return service.play(id, request);
     }
 
@@ -78,6 +90,7 @@ public class GameController {
             }
     )
     @DeleteMapping("/{id}/delete")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public Mono<Void> delete(
             @Parameter(description = "Identifier of the item to be deleted.", required = true)
             @PathVariable String id) {
@@ -109,7 +122,13 @@ public class GameController {
     public Mono<PlayerDTO> changePlayerName(
             @Parameter(description = "Unique player identifier (MySQL ID).", required = true)
             @PathVariable Long playerId,
-            @RequestBody(description = "The new player name.", required = true) String newName) {
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "The new player name.",
+                    required = true,
+                    content = @Content(schema = @Schema(implementation = String.class))
+            )
+            @org.springframework.web.bind.annotation.RequestBody
+            String newName) {
 
         return service.updatePlayerName(playerId, newName);
     }
