@@ -74,6 +74,11 @@ http://localhost:8080/swagger-ui.html
 or
 http://localhost:8080/swagger-ui/index.html
 
+0. **Compile the project (generate JAR file):**
+```
+mvn clean install
+```
+
 1. **Launch the Containers:**
 
    Run the following command in the directory where you have 
