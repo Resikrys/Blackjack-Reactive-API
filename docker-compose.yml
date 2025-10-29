@@ -3,6 +3,7 @@ services:
   # Spring Boot API Service
   blackjack-api:
     build: .
+    restart: on-failure
     ports:
       - "8080:8080"
     environment:
@@ -24,10 +25,11 @@ services:
     image: mysql:8.0
     container_name: blackjack-mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: blackjack_db
 #      MYSQL_USER: root
 #      MYSQL_PASSWORD: password
+    command: --default-authentication-plugin=mysql_native_password
     ports:
       - "3306:3306"
     volumes:
