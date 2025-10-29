@@ -1,4 +1,4 @@
-package s5._1.blackjack.S501_Blackjack.model.r2dbc;
+package s5._1.blackjack.S501_Blackjack.model.mongo;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
@@ -31,8 +31,11 @@ public class Game {
     private int dealerScore;
     private boolean finished;
     private String result;
-    private Instant createdAt;
+//    private Instant createdAt;
+//
+//    @Builder.Default
+//    private Instant createdAtDefault = Instant.now();
 
     @Builder.Default
-    private Instant createdAtDefault = Instant.now();
+    private Instant createdAt = Instant.now();
 }

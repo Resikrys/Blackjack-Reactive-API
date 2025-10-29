@@ -1,7 +1,7 @@
 package s5._1.blackjack.S501_Blackjack.mapper;
 
 import s5._1.blackjack.S501_Blackjack.dto.GameDTO;
-import s5._1.blackjack.S501_Blackjack.model.r2dbc.Game;
+import s5._1.blackjack.S501_Blackjack.model.mongo.Game;
 
 public class GameMapper {
     public static GameDTO toDTO(Game g) {
