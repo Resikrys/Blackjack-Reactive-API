@@ -1,6 +1,5 @@
 package s5._1.blackjack.S501_Blackjack.util;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 

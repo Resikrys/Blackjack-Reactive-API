@@ -31,10 +31,6 @@ public class Game {
     private int dealerScore;
     private boolean finished;
     private String result;
-//    private Instant createdAt;
-//
-//    @Builder.Default
-//    private Instant createdAtDefault = Instant.now();
 
     @Builder.Default
     private Instant createdAt = Instant.now();
