@@ -1,9 +1,19 @@
-# Blackjack WebFlux API
+# ♦️♣️ Blackjack WebFlux API  ️♠️♥️
 
-Reactive Java Spring Boot **(WebFlux)** application for a simplified Blackjack game.
-- Databases: **MongoDB** (games), **MySQL** (players via R2DBC)
-- **Swagger UI**: /swagger-ui.html
-- Docker + docker-compose included
+Reactive **Java Spring Boot (WebFlux)** application for a simplified Blackjack game.
+- Databases: 
+  - **MongoDB**: collection `games` (stores game sessions).
+  - **MySQL**: table `player` (stores players, stats, and balance).
+- **Swagger UI**: /swagger-ui.html (interactive documentation)
+- **Docker** + **docker-compose** included
+
+## ⚙️ Requirements
+
+- Java 21
+- Maven 3.9+
+- Docker & Docker ComposeS
+
+---
 
 ## Project structure
 ```
@@ -11,8 +21,8 @@ blackjack-webflux/
 ├─ src/main/java/com/example/blackjack/
 │  ├─ BlackjackApplication.java
 │  ├─ config/
-│  │  ├─ SwaggerConfig.java
-│  │  └─ DatabaseConfig.java
+│  │  └─ OpenApiConfig.java
+│  │  
 │  ├─ controller/
 │  │  └─ GameController.java
 │  ├─ service/
@@ -53,26 +63,35 @@ blackjack-webflux/
 └─ README.md
 ```
 
-## Principal ENDPOINTS
-- POST /game/new  -> create game
-- GET /game/{id}
-- POST /game/{id}/play  -> body: {"action": "hit"|"stand", "bet":0}
-- DELETE /game/{id}/delete
-- GET /game/ranking
-- PUT /game/player/{playerId}  -> body: "NouNom"
+---
+
+### API ENDPOINTS REFERENCE
+The base URL for the API is http://localhost:8080/swagger-ui.html
+
+| Operation | HTTP Method | Endpoint | Description                                   | Status Codes                      |
+|------------|-------------|-----------|-----------------------------------------------|-----------------------------------|
+| **Create** | POST        | `/game/new` | Creates a new game.                           | `201 Created`, `400 Bad Request`  |
+| **Read One** | GET         | `/game/{id}` | Retrieves a single game by ID.                | `200 OK`, `404 Not Found`         |
+| **Read One** | POST        | `/game/{id}/play` | Make a move (`HIT`, `STAND`, `DOUBLE`).                      | `201 Created`, `400 Bad Request`  | `200 OK`, `404 Not Found` |
+| **Read All** | GET         | `/game/ranking` | Retrieves a ranked list of all players.       | `200 OK`                          |
+| **Update** | PUT         | `/game/player/{playerId}` | Updates an existing Player (body: "newName"). | `200 OK`, `404 Not Found`         |
+| **Delete** | DELETE      | `/game/{id}/delete` | Deletes a game by ID.                         | `204 No Content`, `404 Not Found` |
+---
 
 ## Local execution (maven)
 1. `mvn clean package`
 2. `docker-compose up --build`
 3. Acces: http://localhost:8080
 
+---
+
 ## Testing
 `mvn test`
 
+---
+
 ## Swagger UI access
 http://localhost:8080/swagger-ui.html
-or
-http://localhost:8080/swagger-ui/index.html
 
 0. **Compile the project (generate JAR file):**
 ```
@@ -98,6 +117,7 @@ docker compose ps
 ```
 http://localhost:8080/swagger-ui.html
 ```
+---
 
 ## Docker steps
 1. **Build the application**: ./mvnw package (Generate the JAR to target/)
@@ -116,6 +136,8 @@ http://localhost:8080/swagger-ui.html
 
 5. **Bid the image**: docker push dockerfile/blackjack-api:1.0
 
-## Notes
-- Simplified Blackjack logic; pots extend handing (split, double, insurance).
-- To deploy to Render: create Dockerfile (incl.) and push the image to the container registry or use Docker Compose both services.
+---
+
+### Notes (feautures to beimplemented)
+- Logic for handling bets during the game
+- Deploy to Render: create Dockerfile (incl.) and push the image to the container registry or use Docker Compose both services.
